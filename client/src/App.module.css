@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.pieChartContainer {
+  background: linear-gradient(#FDC98A, #E99897);
+  border-radius: 20px;
+}
