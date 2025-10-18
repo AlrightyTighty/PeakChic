@@ -8,6 +8,7 @@ import {
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { mockFabricData } from './MockFabricData';
+import { fabricInfo } from '../data/FabricInfo';
 
 ChartJS.register(
     ArcElement,
@@ -16,28 +17,25 @@ ChartJS.register(
 );
 
 export default function FabricChart() {
-    const labels = mockFabricData.fabricComposition.map(f => f.name);
-    const data = mockFabricData.fabricComposition.map(f => f.percentage);
+    const labels = mockFabricData.materials.map((m) => m.material);
+    const data = mockFabricData.materials.map((m) => m.percentage);
+
+    const backgroundColors = labels.map( label => {
+        const info = fabricInfo[label as keyof typeof fabricInfo];
+        return info ? info.color: "#CCCCCC";
+    });
 
     const chartData = {
         labels,
         datasets:[
             {
                 data,
-                backgroundColor: ["#F66D44", "#FEAE65", "#E6F69D"]
+                backgroundColor: backgroundColors,
+                borderWidth: 1,
             }
         ]
     };
 
-    // what is record
-    // what is point?
-    const fabricInfo: Record<string, string> = {
-        Cotton: "Natural, breathable, soft",
-        Polyester: "Synthetic, sheds microplastics",
-        Elastine: "Stretchy, retains shape",
-    };
-
-    // point of this?
     const options = {
         plugins : {
             tooltip: {
@@ -45,7 +43,11 @@ export default function FabricChart() {
                     label: (context: any) => {
                         const label = context.label;
                         const value = context.raw;
-                        return `${label}: ${value}% - ${fabricInfo[label] || ""}`;
+                        const info = fabricInfo[label];
+                        const description = info
+                            ? ` : ${info.description}`
+                            : "";
+                        return `${label}: ${value}%${description}`;
                     },
                 },
             },
@@ -55,14 +57,9 @@ export default function FabricChart() {
         },
     };
 
-    // point of this bottom one?
     return (
-        <div style={{ width: 300, margin: "0 auto", textAlign: "center" }}>
-          <h3>Fabric Composition</h3>
+        <div>
           <Pie data={chartData} options={options} />
-          <p style={{ fontSize: "0.9em", marginTop: "10px" }}>
-            {mockFabricData.summary}
-          </p>
         </div>
       );
 }
