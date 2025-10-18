@@ -16,9 +16,6 @@ export default function App() {
       <main style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.pieChartContainer}
         >
-          <h2 style={{ marginBottom: "20px", color: "#333" }}>
-            Your Garment's Fabric Composition
-          </h2>
           {/* Render the pie chart component */}
           <FabricChart />
         </div>

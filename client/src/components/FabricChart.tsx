@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './FabricChart.module.css';
 import { 
     Chart as ChartJS,
     ArcElement,
@@ -32,12 +33,18 @@ export default function FabricChart() {
                 data,
                 backgroundColor: backgroundColors,
                 borderWidth: 1,
+                borderColor: "transparent",
             }
         ]
     };
 
     const options = {
+        responsive: true,
+        mainAspectRatio: false,
         plugins : {
+            legend: {
+                display: false,
+            },
             tooltip: {
                 callbacks: {
                     label: (context: any) => {
@@ -51,14 +58,11 @@ export default function FabricChart() {
                     },
                 },
             },
-            legend: {
-                position: "bottom" as const,
-            },
         },
     };
 
     return (
-        <div>
+        <div className={style.chartWrapper}>
           <Pie data={chartData} options={options} />
         </div>
       );
