@@ -1,11 +1,19 @@
 {
+   "ts-node": {
+    "transpileOnly": true,
+    "files": true,
+    // Tell ts-node CLI to install the --loader automatically, explained below
+    "esm": true,
+    "compilerOptions": {
+      "module": "ESNext"
+    }
+  },
   "compilerOptions": {
-    "module": "esnext",
-    "esModuleInterop": true,
-    "target": "es6",
-    "moduleResolution": "bundler",
-    "sourceMap": true,
-    "outDir": "dist"
+    "target": "ESNext", // Compile to a modern ECMAScript version that supports ES modules
+    "module": "ESNext", // Use ES module syntax for module code generation
+    "moduleResolution": "bundler", // Use Node.js style module resolution
+    "esModuleInterop": true, // Enables default imports from modules with no default export
+    "outDir": "./dist" // Output directory for compiled files
   },
   "lib": ["es2015"]
 }
