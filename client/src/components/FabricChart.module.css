@@ -1,0 +1,16 @@
+.chartWrapper {
+    width: 80%;
+    max-width: 400px;
+    max-height: 435px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+    overflow: visible;
+}
+
+.chartWrapper canvas {
+    width: 100% !important;
+    height: auto !important;
+}
