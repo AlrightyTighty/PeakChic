@@ -55,6 +55,7 @@ app.post('/api/product_information', async (req, res) => {
         
         make sure your response is a stringified response. Do not respond with anything else. Do not use markdown, just give the plain text. If there are more than 1 product in the data you are sent, only choose the FIRST PRODUCT to parse.
         If you cannot find information, please do not make it up, just use null.
+        DO NOT USE \`\`\`json \`\`\`!!! This will mess up the parsing.
         Explain the washing instructions as well as you can without making up information.
         Here is the data to parse: ${JSON.stringify(parsedInfo)}`,
     });
