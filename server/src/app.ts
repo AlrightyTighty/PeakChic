@@ -46,6 +46,9 @@ app.post('/api/product_information', async (req, res) => {
       "product-price": { "amount": 2.00, "currency": "USD" },
       "materials": [ { "material": "material-name", "percentage": 20.00 } ],
       "wash-instructions": "instructions"
+      "wash-method": "machine | dry clean | hand",
+      "wash-temperature": "cold | hot",
+      "imported": true
     }
 
     For materials, please try to match the material with one of the items from this list: 
@@ -74,6 +77,10 @@ app.post('/api/product_information', async (req, res) => {
     For example, turn "American-Grown Cotton" into "Cotton".
 
     If the material does not closely match one of these, then you may leave it unchanged.
+
+
+    For wash temperature and wash method, only choose one from the options available (machine, dry clean, hand) and (hot, cold).
+    If you can't match it to one of those, leave it null.
 
     Respond with plain stringified JSON only (no markdown, no code fences).
     If there are multiple products, only use the first.
