@@ -47,6 +47,34 @@ app.post('/api/product_information', async (req, res) => {
       "materials": [ { "material": "material-name", "percentage": 20.00 } ],
       "wash-instructions": "instructions"
     }
+
+    For materials, please try to match the material with one of the items from this list: 
+    Cotton
+    Polyester
+    Wool
+    Fleece
+    Sherpa
+    Spandex
+    Lycra
+    Elastane
+    Leather
+    Silk
+    Cashmere
+    Linen
+    French Terry
+    Terry Cloth
+    Nylon
+    Hemp
+    Suede
+    Denim
+    Flannel
+    Viscose
+    Rayon
+
+    For example, turn "American-Grown Cotton" into "Cotton".
+
+    If the material does not closely match one of these, then you may leave it unchanged.
+
     Respond with plain stringified JSON only (no markdown, no code fences).
     If there are multiple products, only use the first.
     If data is missing, use null.
