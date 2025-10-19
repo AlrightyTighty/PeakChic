@@ -1,4 +1,6 @@
+import { useLocation } from "react-router";
 import s from "./Info.module.css";
+import FabricChart from "../components/FabricChart";
 // import FabricChart from "../components/FabricChart";
 // import React from "react";
 
@@ -18,12 +20,18 @@ type Props = {
     summary = "Your garment is machine washable and should last with proper care. Click to view a detailed breakdown by material and construction.",
     // title = "Ratings"
   }: Props) {
+
+    const location = useLocation();
+    const { geminiResponse } = location.state || {}; // Destructure state, provide default empty object
+
+    console.log(geminiResponse);
+
     return (
 <div className={s.panel}>
   <div className={s.header}>About Your Garment</div>
 
   <div className={s.chartCard}>
-   { /*<FabricChart />*/ }
+   { <FabricChart fabricData={geminiResponse.materials}  /> }
   </div>
 
   <div className={s.metrics}>

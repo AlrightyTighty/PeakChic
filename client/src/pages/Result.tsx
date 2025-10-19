@@ -35,7 +35,7 @@ export default function Result() {
     >
       <main style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.pieChartContainer}>
-          <FabricChart fabricData={geminiResponse.materials} />
+         {geminiResponse.materials && <FabricChart fabricData={geminiResponse.materials} />}
           {data && (
             <div style={{ marginTop: 24, display: "flex", justifyContent: "center" }}>
               <Scores

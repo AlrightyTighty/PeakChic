@@ -1,6 +1,5 @@
 import {MemoryRouter as Router, Route, Routes} from "react-router";
 import Main from "./pages/Main";
-import Result from "./pages/Result";
 import Info from "./pages/Info";
 
 export default function App() {
@@ -10,8 +9,7 @@ export default function App() {
     <Router initialEntries={['/']}>
       <Routes>
         <Route index path="/" element={<Main/>}/>
-        <Route path="/result" element={<Result/>}/>
-        <Route path="/rating" element ={<Info/>}/>
+        <Route path="/result" element ={<Info/>}/>
       </Routes>
     </Router>
 
