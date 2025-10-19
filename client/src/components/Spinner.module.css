@@ -1,13 +1,6 @@
-.spinnerWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }  
-
 .loader {
   display: inline-block;
+  margin: auto;
   color: #ffffff;
   font-size: 35px;
   text-indent: -9999em;
