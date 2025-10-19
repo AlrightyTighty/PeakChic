@@ -91,28 +91,40 @@ const FabricChart: React.FC<FabricChartProps> = ({fabricData}) => {
                 cornerRadius: 20, 
                 displayColors: false,
                 callbacks: {
-                    label: (context: any) => {
-                        const label = context.label;
-                        const value = context.raw;
+                    title: (items: any) => {
+                        const first = items?.[0];
+                        if (!first) return '';
+                        const dataset = first.dataset ?? {};
+                        const index = first.dataIndex ?? 0;
+                        const value = dataset.data?.[index];
+                        const label = first.label ?? '';
+                        return `${label} — ${value}%`;
+                      },
+                      label: (context: any) => {
+                        const label = context.label as keyof typeof fabricInfo;
                         const info = fabricInfo[label];
                         const lines: string[] = [];
-
-                        if (typeof value !== "undefined") lines.push(`${value}%`);
                         if (info?.description) lines.push(info.description);
-            
+                    
+                        const toList = (v: unknown): string[] =>
+                          Array.isArray(v)
+                            ? v.map(s => String(s).trim()).filter(Boolean)
+                            : typeof v === 'string'
+                            ? v.split(',').map(s => s.trim()).filter(Boolean)
+                            : [];
+                    
                         const prosList = toList(info?.pros);
                         const consList = toList(info?.cons);
-            
+                    
                         if (prosList.length) {
-                          lines.push("Pros:");
-                          lines.push(...prosList.map(p => `• ${p}`)); // one line per item
+                          lines.push('Pros:');
+                          lines.push(...prosList.map(p => `• ${p}`));
                         }
-                        if (prosList.length && consList.length) lines.push(""); // spacer
+                        if (prosList.length && consList.length) lines.push('');
                         if (consList.length) {
-                          lines.push("Cons:");
-                          lines.push(...consList.map(c => `• ${c}`)); // one line per item
+                          lines.push('Cons:');
+                          lines.push(...consList.map(c => `• ${c}`));
                         }
-            
                         return lines;
                     },
                 },
@@ -125,7 +137,6 @@ const FabricChart: React.FC<FabricChartProps> = ({fabricData}) => {
 
     return (
         <div className={style.chartWrapper}>
-            <img src={flowerPng} alt="flower background" className={style.flowerBg} />
             <Pie data={chartData} options={options} />
         </div>
       );

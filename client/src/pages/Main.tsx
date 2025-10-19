@@ -1,12 +1,16 @@
 import styles from "./Main.module.css"
 import mascot from "../assets/mascot.png"
-import { useNavigate } from "react-router"
+import Spinner from "../components/Spinner";
+import React, { useState} from "react";
+// import { useNavigate } from "react-router"
 
 const Main = () => {
-
-   const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    // const navigate = useNavigate();
 
    const onClick = () => { chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        setLoading(true);
+
         if (tabs[0]?.id) {
         chrome.tabs.sendMessage(
             tabs[0].id,
@@ -14,7 +18,10 @@ const Main = () => {
             async (response) => {
             if (chrome.runtime.lastError) {
                 console.error(chrome.runtime.lastError.message);
-            } else {
+                setLoading(false);
+                return;
+            } 
+            try {
                 const html = response.html;
                 console.log(html);
                 const geminiResponse = await fetch(`http://localhost:3000/api/product_information?url=${encodeURIComponent(tabs[0].url!)}`,
@@ -28,9 +35,11 @@ const Main = () => {
                     }
                 )
 
-                const geminiResponseJson = await geminiResponse.json();
-                console.log(geminiResponseJson);
-                navigate("/Result", { state: {geminiResponse: await geminiResponseJson}});
+                console.log(await geminiResponse.json());
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
             }
             }
         );
@@ -41,7 +50,11 @@ const Main = () => {
     <main>
         <img id={styles['mascot-image']} src={mascot}/>
         <header>Vesta</header>
-        <button onClick={onClick}>Scan Now</button>
+        {loading ? (
+            <Spinner />
+        ) : (
+            <button onClick={onClick}>SCAN</button>
+        )}
     </main>
   )
 }

@@ -1,5 +1,5 @@
 .panel {
-    background: #bfcf9f;
+    background: #AEC9CC;
     border-radius: 28px;
     box-shadow: 0 24px 60px rgba(0,0,0,.2);
     width: clamp(360px, 90vw, 540px); /* responsive popup width */
