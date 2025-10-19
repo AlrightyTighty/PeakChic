@@ -1,4 +1,5 @@
 // source: https://www.merchology.com/pages/fabric-guide?srsltid=AfmBOorrUHUq2hoSw5ULxmH40yqeumwwZ9nlHxOrhciRw35iOni4awhX
+// source: https://medium.com/@jacobajane/advantages-and-disadvantages-of-viscose-rayon-a0e0dc255fa1
 
 export const fabricInfo: Record<string, { description: string; pros: string; cons: string; color: string }> = {
     Cotton: {
@@ -66,6 +67,42 @@ export const fabricInfo: Record<string, { description: string; pros: string; con
         pros: "Comfortable, Highly Absorbant, Flexible, Midweight",
         cons: "Prone to fraying, Too thick for warmer climates",
         color: "#3E8914"
+    },
+    Nylon: {
+        description: "Synthetic fabric that is extremely tough, durable, and water-resistant.",
+        pros: "Waterproof, Wind-Resistant, Versatile, UV Protective, Doesn't shrink, Tough and durable",
+        cons: "Not very breathable, Can be difficult to clean",
+        color: "#272727"
+    },
+    Hemp: {
+        description: "Made from cannabis plant that's harvested and spun into yarn.",
+        pros: "Sustainable, Strong, Hypoallergic, Breathable, UV Resistant",
+        cons: "Wrinkles easily, Can be scratchy",
+        color: "#D2D8B3"
+    },
+    Suede: {
+        description: "Sueded fabric is usually made from cotton or silk.",
+        pros: "Soft and smooth, Comfortable, Durable",
+        cons: "Easier to damage",
+        color: "#EFD09E"
+    },
+    Denim: {
+        description: "Made from 100% cotton. Made by a specific method of twill weaving that creates diagonal twill line. This method makes denim feel stronger than traditional cotton garments.",
+        pros: "Tough and durable, Does not shrink, Warm and insulating",
+        cons: "Stretches out over time, More difficult to decorate",
+        color: "#90A9B7"
+    },
+    Flannel: {
+        description: "Another form of cotton that is brushed for added softness.",
+        pros: "Soft and comfy, Warm and insulating, Breathable",
+        cons: "Pilling can be an issue, Prone to shrinking",
+        color: "#D4AA7D"
+    },
+    "Viscose, Rayon": {
+        description: "The main ingredient is wood pulp. While the ingredient is natural, the manufacturing process is heavily polluting.",
+        pros: "Inexpensive, Soft, Dyes easily",
+        cons: "Almost always needs to be dry cleaned, Manufacturing is harmful to the environment, Prone to stretching and bagging, Fabric is weak, Absorbs moisture",
+        color: "#C492B1"
     }
   };
   
