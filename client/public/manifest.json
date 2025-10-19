@@ -6,10 +6,6 @@
   "action": {
     "default_popup": "index.html"
   },
-    "permissions": [
-    "http://localhost/*",
-    "https://localhost/*"
-  ],
   "host_permissions": [
     "http://localhost/*",
     "https://localhost/*"

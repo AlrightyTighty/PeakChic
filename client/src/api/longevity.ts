@@ -48,7 +48,7 @@ function toGeminiShape(input: LongevityInput) {
 
 export async function fetchLongevity(body: LongevityInput): Promise<LongevityResponse> {
   const payload = toGeminiShape(body);
-  const res = await fetch("/api/predict-durability", {
+  const res = await fetch("http://localhost:3000/api/predict-durability", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
