@@ -25,7 +25,7 @@
     place-items: center;
     max-width: 100%;
     position: relative;
-    overflow: hidden;   
+    overflow: visible;   
   }
   
   .metrics {

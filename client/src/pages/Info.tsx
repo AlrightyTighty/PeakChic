@@ -60,7 +60,7 @@ import { useRef } from "react";
     </div>
     <div onMouseEnter={ () => appearElement(ecoScoreRef.current!)} onMouseLeave={() => hideElement(ecoScoreRef.current!)} className={s.tile}>
       <div className={s.label}>Eco-Cost</div>
-      <div className={s.value}>{data?.ecoCostScore}</div>
+      <div className={s.value}>{ data?.ecoCostScore }</div>
     </div>
     <div onMouseEnter={ () => appearElement(qualityRef.current!)} onMouseLeave={() => hideElement(qualityRef.current!)}  className={s.tile}>
       <div className={s.label}>Quality</div>
