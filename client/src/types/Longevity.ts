@@ -1,7 +1,7 @@
 // client/src/types/Longevity.ts
 
 export type LongevityInput = {
-    materials: { name: string; pct: number }[];
+    materials: { material: string; percentage: number }[];
     gsm?: number;
     weave?: string;
     stretchPct?: number;
