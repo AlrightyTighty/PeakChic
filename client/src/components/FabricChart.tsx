@@ -1,11 +1,9 @@
-import React from 'react';
 import style from './FabricChart.module.css';
 import { 
     Chart as ChartJS,
     ArcElement,
     Tooltip,
     Legend,
-    plugins,
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { mockFabricData } from './MockFabricData';

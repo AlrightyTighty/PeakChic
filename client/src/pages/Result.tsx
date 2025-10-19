@@ -1,4 +1,3 @@
-import React from "react";
 import FabricChart from "../components/FabricChart";
 import Scores from "../components/Scores";
 import styles from "./Result.module.css";
