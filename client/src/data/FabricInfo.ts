@@ -30,6 +30,42 @@ export const fabricInfo: Record<string, { description: string; pros: string; con
         pros: "Soft, Warm and Insulating, Moisture-Wicking, Machine-Washable",
         cons: "Gets dirty easily",
         color: "#EAD2AC"
+    },
+    "Spandex, Lycra, Elastane": {
+        description: "Stretchiest, most flexible corporate apparel around.",
+        pros: "Stretchy and flexible, Moisture-Wicking, Durable, Comfortable",
+        cons: "Doesn't let your skin breathe, sensitive to heat",
+        color: "#4A442D"
+    },
+    Leather: {
+        description: "Aside from wool, the only type of clothing material that comes from mammals",
+        pros: "Tough, Durable",
+        cons: "Can get stretch marks, Not breathable, Can be expensive",
+        color: "#3D3522"
+    },
+    Silk: {
+        description: "Natural protein fiber that is produced by silkworms.",
+        pros: "Soft and Smooth, Comfortable, Strong",
+        cons: "Expensive, Stains easy, Requires special care/ dry cleaning",
+        color: "#58B09C"
+    },
+    Cashmere: {
+        description: "Form of wool that comes specifically from cashmere goats.",
+        pros: "Soft, Warm and Insulating, Lightweight and Breathable, Wrinkle-Resistant",
+        cons: "Not very durable, Pilling can be an issue, Requires special care / dry cleaning",
+        color: "#E8FCCF"
+    },
+    Linen: {
+        description: "Made from plants and perfect for a hot summer!",
+        pros: "Breathable, Comfortable, Durable, Low Maintenance, Machine-Washable",
+        cons: "Wrinkles easily, Prone to shrinking",
+        color: "#96E072"
+    },
+    "French Terry, Terry Cloth": {
+        description: "Form of cotton fabric that's popular for loungewear and towels.",
+        pros: "Comfortable, Highly Absorbant, Flexible, Midweight",
+        cons: "Prone to fraying, Too thick for warmer climates",
+        color: "#3E8914"
     }
   };
   
