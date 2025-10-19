@@ -1,8 +1,9 @@
 main {
     width: 400px;
     height: 300px;
-    background-image: linear-gradient(to top, #83CC63, #AECEA1);
+    background-image: linear-gradient(to top, #AEC9CC, #AECEA1);
     padding: 40px;
+    border-radius: 20px;
 }
 
 #mascot-image {
@@ -15,10 +16,10 @@ main {
 
 header {
     font-size: 48pt;
-    font-family: Arial, cursive;
+    font-family: Junge, cursive;
     margin: auto;
     text-align: center;
-    color: #3B3C50
+    color: #242a25
 }
 
 button {
@@ -28,8 +29,10 @@ button {
     height: 50px;
     border-radius: 20px;
     border-width: 0;
-    background-color: #D4FF00;
-    font-family: Arial;
-    font-size: 20pt;
-    filter: drop-shadow(5px 5px 0px #A5FF00)
+    background-color: #719296;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #e3efe4;
+    filter: drop-shadow(5px 5px 0px #10373b)
 }
