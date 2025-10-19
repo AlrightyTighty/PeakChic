@@ -1,3 +1,4 @@
+// @ts-ignore
 import { GeminiShape } from "../types/GeminiShape";
 
 type Numeric = number | null | undefined;

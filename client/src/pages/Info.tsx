@@ -35,12 +35,12 @@ import { useRef } from "react";
       console.log(error)
 
       const appearElement = (p: HTMLParagraphElement) => {
-        // p.style.display = "block";
+        p.style.display = "block";
       }
 
       
       const hideElement = (p: HTMLParagraphElement) => {
-      //  p.style.display = "none";
+       p.style.display = "none";
       }
 
     return (
@@ -57,7 +57,7 @@ import { useRef } from "react";
       <div className={s.value}>{data?.lifeYears}</div>
     </div>
     <div onMouseEnter={ () => appearElement(ecoScoreRef.current!)} onMouseLeave={() => hideElement(ecoScoreRef.current!)} className={s.tile}>
-      <div className={s.label}>Eco-Score</div>
+      <div className={s.label}>Eco-Cost</div>
       <div className={s.value}>{data?.ecoCostScore}</div>
     </div>
     <div onMouseEnter={ () => appearElement(qualityRef.current!)} onMouseLeave={() => hideElement(qualityRef.current!)}  className={s.tile}>
