@@ -3,7 +3,7 @@ import { predictLongevity } from "../services/predictLongevity";
 
 const router = Router();
 router.use(json());
-router.post("/api/predict-durability", (req, res) => {
+router.post("/", (req, res) => {
   try {
     res.status(200).json(predictLongevity(req.body));
   } catch (e: any) {

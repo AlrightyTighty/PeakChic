@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI } from "@google/genai"
 import durabilityRouter from '../routes/durability';
 
 dotenv.config();
@@ -13,7 +13,7 @@ const port = 3000;
 app.use(bodyParser.text({ type: 'text/html', limit: '100mb' }));
 
 // Mount durability route
-app.use('/api', durabilityRouter);
+app.use('/api/predict-durability', durabilityRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
