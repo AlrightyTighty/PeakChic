@@ -35,7 +35,7 @@ const Main = () => {
                     }
                 )
 
-                navigate("/result", { state: {geminiResponse: await geminiResponse.json()}});
+                navigate("/rating", { state: {geminiResponse: await geminiResponse.json()}});
             } catch (err) {
                 console.error(err);
             } finally {
