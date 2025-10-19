@@ -1,0 +1,35 @@
+main {
+    width: 400px;
+    height: 300px;
+    background-image: linear-gradient(to top, #83CC63, #AECEA1);
+    padding: 40px;
+}
+
+#mascot-image {
+    width: 150px;
+    aspect-ratio: 1/1;
+    display: block;
+    margin: 0 auto;
+     filter: drop-shadow(5px 5px 2px rgba(0, 0, 0, 122));
+}
+
+header {
+    font-size: 48pt;
+    font-family: Arial, cursive;
+    margin: auto;
+    text-align: center;
+    color: #3B3C50
+}
+
+button {
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    border-width: 0;
+    background-color: #D4FF00;
+    font-family: Arial;
+    font-size: 20pt;
+    filter: drop-shadow(5px 5px 0px #A5FF00)
+}
