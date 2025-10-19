@@ -39,6 +39,9 @@ export type Durability = {
   compositeScore: number;
   baseFabricScore: number;
   factors: Factors;
+  lifeYears: number;
+  ecoScore: number;
+  qualityScore: number;
 };
 
 const FABRIC_BASE: Record<string, number> = {
@@ -68,9 +71,37 @@ const FABRIC_BASE: Record<string, number> = {
   denim: 0.88
 };
 
+const ECO_BASE_10: Record<string, number> = {
+  cotton: 6,
+  organic_cotton: 8,
+  pima_cotton: 6,
+  linen: 8,
+  hemp: 9,
+  wool: 6,
+  merino_wool: 6,
+  cashmere: 4,
+  silk: 5,
+  polyester: 3,
+  recycled_polyester: 5,
+  nylon: 3,
+  elastane: 2,
+  spandex: 2,
+  acrylic: 2,
+  rayon: 4,
+  viscose: 4,
+  modal: 6,
+  lyocell: 7,
+  tencel: 7,
+  acetate: 3,
+  leather: 5,
+  faux_leather: 3,
+  denim: 5
+};
+
 function norm(n?: string) { return (n || "").toLowerCase().replace(/\s+/g, "_"); }
 function clamp(x: number, a: number, b: number) { return Math.max(a, Math.min(b, x)); }
 function num(x: unknown, d = 0) { const v = Number(x); return Number.isFinite(v) ? v : d; }
+function clamp10(x: number) { return clamp(Math.round(x), 1, 10); }
 
 function inferBase(name: string) {
   if (/denim/.test(name)) return FABRIC_BASE.denim;
@@ -102,6 +133,29 @@ function fabricScore(materials?: Material[]) {
     total += pct;
   }
   return total > 0 ? score / total : 0.72;
+}
+
+function ecoScore10(materials?: Material[], wash?: string) {
+  if (!materials?.length) {
+    let s = 5;
+    if (/dry clean/i.test(wash || "")) s -= 1;
+    if (/cold/i.test(wash || "")) s += 0.5;
+    if (/dryer|tumble dry/i.test(wash || "")) s -= 0.5;
+    return clamp10(Math.round(s));
+  }
+  let s = 0, w = 0;
+  for (const m of materials) {
+    const key = norm(m.material);
+    const v = ECO_BASE_10[key] ?? 5;
+    const pct = clamp(num(m.percentage), 0, 100) / 100;
+    s += v * pct;
+    w += pct;
+  }
+  let score = w > 0 ? s / w : 5;
+  if (/dry clean/i.test(wash || "")) score -= 1;
+  if (/cold/i.test(wash || "")) score += 0.5;
+  if (/dryer|tumble dry/i.test(wash || "")) score -= 0.5;
+  return clamp10(Math.round(score));
 }
 
 function fGSM(gsm?: number, category?: string) {
@@ -185,6 +239,11 @@ function confidence(d: GeminiShape) {
   return clamp(0.5 + k * 0.05, 0.5, 0.95);
 }
 
+function scale01To10(x: number, min: number, max: number) {
+  const n = (x - min) / (max - min);
+  return clamp10(1 + n * 9);
+}
+
 export function predictLongevity(payload: GeminiShape): Durability {
   const base = fabricScore(payload.materials);
   const cg = fGSM(payload.gsm, payload.category);
@@ -199,6 +258,13 @@ export function predictLongevity(payload: GeminiShape): Durability {
   const predictedWears = Math.round(60 + composite * 240);
   const months = Math.round((predictedWears / 4) * (1 / (cu < 1 ? 0.9 : cu > 1 ? 1.1 : 1)));
   const careLevel = composite >= 0.95 ? "standard" : composite >= 0.8 ? "gentle" : "delicate";
+
+  const ecoScore = ecoScore10(payload.materials, payload["wash-instructions"]);
+  const lifeYears = Math.max(1, Math.round(months / 12));
+  const scaledComposite = scale01To10(composite, 0.45, 1.25);
+  const scaledBase = scale01To10(base, 0.55, 0.95);
+  const qualityScore = clamp10(Math.round(0.6 * scaledComposite + 0.4 * scaledBase));
+
   return {
     predictedWears,
     predictedMonthsTypical: months,
@@ -215,6 +281,9 @@ export function predictLongevity(payload: GeminiShape): Durability {
       usage: Number(cu.toFixed(3)),
       reviews: Number(cr.toFixed(3)),
       price: Number(cp.toFixed(3))
-    }
+    },
+    lifeYears,
+    ecoScore,
+    qualityScore
   };
 }

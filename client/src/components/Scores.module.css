@@ -1,0 +1,31 @@
+.wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 720px;
+  }
+  .card {
+    background: #fff1eb;
+    border-radius: 16px;
+    padding: 18px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #5b4f3a;
+    line-height: 1;
+  }
+  .label {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #5b4f3a;
+    font-weight: 600;
+  }
+  .sublabel {
+    font-size: 12px;
+    color: #7a6e59;
+  }
+  
