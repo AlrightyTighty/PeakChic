@@ -8,7 +8,7 @@ import {
 import { Pie } from 'react-chartjs-2';
 import { mockFabricData } from './MockFabricData';
 import { fabricInfo } from '../data/FabricInfo';
-
+import flowerPng from "../assets/Flower.png";
 
 ChartJS.register(
     ArcElement,
@@ -98,6 +98,7 @@ export default function FabricChart() {
 
     return (
         <div className={style.chartWrapper}>
+            <img src={flowerPng} alt="flower background" className={style.flowerBg} />
             <Pie data={chartData} options={options} />
         </div>
       );
