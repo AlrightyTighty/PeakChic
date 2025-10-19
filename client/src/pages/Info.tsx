@@ -20,7 +20,7 @@ type Props = {
   }: Props) {
     return (
 <div className={s.panel}>
-  <div className={s.header}>Ratings</div>
+  <div className={s.header}>Rating</div>
 
   <div className={s.chartCard}>
     <FabricChart />

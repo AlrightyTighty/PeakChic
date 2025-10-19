@@ -39,6 +39,13 @@ export default function FabricChart() {
         ]
     };
 
+    const toList = (v: unknown): string[] =>
+        Array.isArray(v)
+          ? v.map(s => String(s).trim()).filter(Boolean)
+          : typeof v === "string"
+            ? v.split(",").map(s => s.trim()).filter(Boolean)
+            : [];
+
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -80,13 +87,25 @@ export default function FabricChart() {
                         const label = context.label;
                         const value = context.raw;
                         const info = fabricInfo[label];
-                        const description = info
-                            ? `${info.description}`
-                            : "";
-                        return[
-                            `${value}%`,
-                            description
-                        ];
+                        const lines: string[] = [];
+
+                        if (typeof value !== "undefined") lines.push(`${value}%`);
+                        if (info?.description) lines.push(info.description);
+            
+                        const prosList = toList(info?.pros);
+                        const consList = toList(info?.cons);
+            
+                        if (prosList.length) {
+                          lines.push("Pros:");
+                          lines.push(...prosList.map(p => `• ${p}`)); // one line per item
+                        }
+                        if (prosList.length && consList.length) lines.push(""); // spacer
+                        if (consList.length) {
+                          lines.push("Cons:");
+                          lines.push(...consList.map(c => `• ${c}`)); // one line per item
+                        }
+            
+                        return lines;
                     },
                 },
                 bodySpacing: 6,
