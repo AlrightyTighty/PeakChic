@@ -1,14 +1,19 @@
 import styles from "./Main.module.css"
 import mascot from "../assets/mascot.png"
 import Spinner from "../components/Spinner";
-import { useState} from "react";
+import { useRef, useState} from "react";
 import { useNavigate } from "react-router"
 
 const Main = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const errorText = useRef<null | HTMLParagraphElement>(null);
+
    const onClick = () => { chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const errorTextElement = errorText.current;
+        if (!errorTextElement) return;
+
         setLoading(true);
 
         if (tabs[0]?.id) {
@@ -31,13 +36,19 @@ const Main = () => {
                             "Content-Type": "text/html"
                         },
                         body: html
-
                     }
                 )
 
-                navigate("/rating", { state: {geminiResponse: await geminiResponse.json()}});
-            } catch (err) {
-                console.error(err);
+                const geminiResponseJson = await geminiResponse.json();
+                if (geminiResponseJson.materials == null)
+                {
+                    errorTextElement.textContent = "Could not find material content. Make sure it is accessible on this page.";
+                    return;
+                }
+
+                navigate("/result", { state: {geminiResponse: geminiResponseJson}});
+            } catch (err: any) {
+                errorTextElement.textContent = err
             } finally {
                 setLoading(false);
             }
@@ -55,6 +66,7 @@ const Main = () => {
         ) : (   
             <button onClick={onClick}>SCAN</button>
         )}
+        <p ref={errorText} id={styles['error-text']}></p>
     </main>
   )
 }

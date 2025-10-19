@@ -36,3 +36,10 @@ button {
     color: #e3efe4;
     filter: drop-shadow(5px 5px 0px #10373b)
 }
+
+#error-text {
+    font-size: 14pt;
+    margin: auto;
+    text-align: center;
+    color: red;
+}
