@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes} from "react-router";
+import {MemoryRouter as Router, Route, Routes} from "react-router";
 import Main from "./pages/Main";
 import Info from "./pages/Info";
 
