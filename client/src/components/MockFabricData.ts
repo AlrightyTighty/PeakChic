@@ -1,4 +1,4 @@
-export const mockFabricData = {
+/*export const mockFabricData = {
     "product-name": "Classic Cotton Tee",
     "product-brand": "EcoWear",
     "product-price": {
@@ -21,4 +21,4 @@ export const mockFabricData = {
     ],
     "wash-instructions": "Machine wash cold with like colors. Tumble dry low. Do not bleach."
   };
-  
+  */

@@ -1,10 +1,10 @@
 import styles from "./Main.module.css"
 import mascot from "../assets/mascot.png"
-// import { useNavigate } from "react-router"
+import { useNavigate } from "react-router"
 
 const Main = () => {
 
-    // const navigate = useNavigate();
+   const navigate = useNavigate();
 
    const onClick = () => { chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (tabs[0]?.id) {
@@ -28,7 +28,9 @@ const Main = () => {
                     }
                 )
 
-                console.log(await geminiResponse.json());
+                const geminiResponseJson = await geminiResponse.json();
+                console.log(geminiResponseJson);
+                navigate("/Result", { state: {geminiResponse: await geminiResponseJson}});
             }
             }
         );

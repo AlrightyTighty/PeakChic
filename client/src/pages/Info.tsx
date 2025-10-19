@@ -1,6 +1,6 @@
 import s from "./Info.module.css";
-import FabricChart from "../components/FabricChart";
-import React from "react";
+// import FabricChart from "../components/FabricChart";
+// import React from "react";
 
 
 type Props = {
@@ -16,14 +16,14 @@ type Props = {
     ecoCost = "4",
     quality = "9",
     summary = "Your garment is machine washable and should last with proper care. Click to view a detailed breakdown by material and construction.",
-    title = "Ratings"
+    // title = "Ratings"
   }: Props) {
     return (
 <div className={s.panel}>
   <div className={s.header}>Rating</div>
 
   <div className={s.chartCard}>
-    <FabricChart />
+   { /*<FabricChart />*/ }
   </div>
 
   <div className={s.metrics}>

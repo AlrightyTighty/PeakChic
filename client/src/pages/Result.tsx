@@ -2,8 +2,12 @@ import FabricChart from "../components/FabricChart";
 import Scores from "../components/Scores";
 import styles from "./Result.module.css";
 import { useLongevity } from "../hooks/useLongevity";
+import { useLocation } from "react-router";
 
 export default function Result() {
+  const location = useLocation();
+  const { geminiResponse } = location.state || {}; // Destructure state, provide default empty object
+
   const { data, loading, error } = useLongevity({
     materials: [
       { name: "Cotton", pct: 65 },
@@ -31,7 +35,7 @@ export default function Result() {
     >
       <main style={{ display: "flex", justifyContent: "center" }}>
         <div className={styles.pieChartContainer}>
-          <FabricChart />
+          <FabricChart fabricData={geminiResponse.materials} />
           {data && (
             <div style={{ marginTop: 24, display: "flex", justifyContent: "center" }}>
               <Scores

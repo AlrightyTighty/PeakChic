@@ -6,9 +6,10 @@ import {
     Legend,
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { mockFabricData } from './MockFabricData';
+// import { mockFabricData } from './MockFabricData';
 import { fabricInfo } from '../data/FabricInfo';
 import flowerPng from "../assets/Flower.png";
+import type React from 'react';
 
 ChartJS.register(
     ArcElement,
@@ -16,9 +17,16 @@ ChartJS.register(
     Legend,
 );
 
-export default function FabricChart() {
-    const labels = mockFabricData.materials.map((m) => m.material);
-    const data = mockFabricData.materials.map((m) => m.percentage);
+
+interface FabricChartProps {
+    fabricData: {material: string, percentage: number}[]
+}
+
+
+const FabricChart: React.FC<FabricChartProps> = ({fabricData}) => {
+    
+    const labels = fabricData.map((m) => m.material);
+    const data = fabricData.map((m) => m.percentage);
 
     console.log(data);
 
@@ -122,3 +130,5 @@ export default function FabricChart() {
         </div>
       );
 }
+
+export default FabricChart;
