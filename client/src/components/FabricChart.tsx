@@ -21,6 +21,8 @@ export default function FabricChart() {
     const labels = mockFabricData.materials.map((m) => m.material);
     const data = mockFabricData.materials.map((m) => m.percentage);
 
+    console.log(data);
+
     const backgroundColors = labels.map( label => {
         const info = fabricInfo[label as keyof typeof fabricInfo];
         return info ? info.color: "#CCCCCC";
