@@ -40,7 +40,7 @@ export default function Result() {
             <div style={{ marginTop: 24, display: "flex", justifyContent: "center" }}>
               <Scores
                 lifeYears={data.lifeYears}
-                ecoScore={data.ecoScore}
+                ecoScore={1}
                 qualityScore={data.qualityScore}
               />
             </div>

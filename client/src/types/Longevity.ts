@@ -30,7 +30,7 @@ export type LongevityInput = {
       price: number;
     };
     lifeYears: number;
-    ecoScore: number;
+    ecoCostScore: number;
     qualityScore: number;
   };
   

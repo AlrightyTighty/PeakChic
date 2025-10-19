@@ -40,7 +40,7 @@ const Main = () => {
                 )
 
                 const geminiResponseJson = await geminiResponse.json();
-                if (geminiResponseJson.materials == null)
+                if (geminiResponseJson.materials[0] == null)
                 {
                     errorTextElement.textContent = "Could not find material content. Make sure it is accessible on this page.";
                     return;
