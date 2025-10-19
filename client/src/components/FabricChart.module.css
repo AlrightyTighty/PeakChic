@@ -13,5 +13,4 @@
 .chartWrapper canvas {
     width: 100% !important;
     height: auto !important;
-    z-index: 1;
 }

@@ -32,7 +32,19 @@ export const fabricInfo: Record<string, { description: string; pros: string; con
         cons: "Gets dirty easily",
         color: "#EAD2AC"
     },
-    "Spandex, Lycra, Elastane": {
+    Spandex: {
+        description: "Stretchiest, most flexible corporate apparel around.",
+        pros: "Stretchy and flexible, Moisture-Wicking, Durable, Comfortable",
+        cons: "Doesn't let your skin breathe, sensitive to heat",
+        color: "#4A442D"
+    },
+    Lycra: {
+        description: "Stretchiest, most flexible corporate apparel around.",
+        pros: "Stretchy and flexible, Moisture-Wicking, Durable, Comfortable",
+        cons: "Doesn't let your skin breathe, sensitive to heat",
+        color: "#4A442D"
+    },
+    Elastane: {
         description: "Stretchiest, most flexible corporate apparel around.",
         pros: "Stretchy and flexible, Moisture-Wicking, Durable, Comfortable",
         cons: "Doesn't let your skin breathe, sensitive to heat",
@@ -98,7 +110,13 @@ export const fabricInfo: Record<string, { description: string; pros: string; con
         cons: "Pilling can be an issue, Prone to shrinking",
         color: "#D4AA7D"
     },
-    "Viscose, Rayon": {
+    Viscose: {
+        description: "The main ingredient is wood pulp. While the ingredient is natural, the manufacturing process is heavily polluting.",
+        pros: "Inexpensive, Soft, Dyes easily",
+        cons: "Almost always needs to be dry cleaned, Manufacturing is harmful to the environment, Prone to stretching and bagging, Fabric is weak, Absorbs moisture",
+        color: "#C492B1"
+    },
+    Rayon: {
         description: "The main ingredient is wood pulp. While the ingredient is natural, the manufacturing process is heavily polluting.",
         pros: "Inexpensive, Soft, Dyes easily",
         cons: "Almost always needs to be dry cleaned, Manufacturing is harmful to the environment, Prone to stretching and bagging, Fabric is weak, Absorbs moisture",
