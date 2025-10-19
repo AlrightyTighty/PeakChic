@@ -65,4 +65,4 @@ app.post('/api/product_information', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Express is listening at http://localhost:${port}`);
-});
+}); 
