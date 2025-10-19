@@ -13,4 +13,18 @@
 .chartWrapper canvas {
     width: 100% !important;
     height: auto !important;
+    z-index: 1;
 }
+
+.flowerBg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 125%; 
+    height: auto;
+    transform: translate(-50%, -41%);
+    z-index: 0;
+    opacity: 0.8;
+    object-fit: contain;
+    pointer-events: none;
+  }
