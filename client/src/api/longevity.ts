@@ -12,8 +12,8 @@ function toGeminiShape(input: LongevityInput) {
 
   return {
     materials: (input.materials || []).map(m => ({
-      material: m.name,
-      percentage: m.pct
+      material: m.material,
+      percentage: m.percentage
     })),
     gsm: input.gsm,
     weave: input.weave,

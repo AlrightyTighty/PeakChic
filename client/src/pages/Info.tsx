@@ -1,6 +1,7 @@
 import { useLocation } from "react-router";
 import s from "./Info.module.css";
 import FabricChart from "../components/FabricChart";
+import { useLongevity } from "../hooks/useLongevity";
 // import FabricChart from "../components/FabricChart";
 // import React from "react";
 
@@ -25,6 +26,16 @@ type Props = {
     const { geminiResponse } = location.state || {}; // Destructure state, provide default empty object
 
     console.log(geminiResponse);
+
+
+      const { data, loading, error } = useLongevity({
+        materials: geminiResponse.materials,
+        care: { method: geminiResponse['method'], dryer: geminiResponse['use-dryer'], temp: geminiResponse['wash-temperature'] },
+      });
+
+      console.log(data)
+      console.log(loading)
+      console.log(error)
 
     return (
 <div className={s.panel}>

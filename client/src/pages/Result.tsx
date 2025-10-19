@@ -10,9 +10,9 @@ export default function Result() {
 
   const { data, loading, error } = useLongevity({
     materials: [
-      { name: "Cotton", pct: 65 },
-      { name: "Polyester", pct: 25 },
-      { name: "Elastane", pct: 10 }
+      { material: "Cotton", percentage: 65 },
+      { material: "Polyester", percentage: 25 },
+      { material: "Elastane", percentage: 10 }
     ],
     gsm: 180,
     weave: "Twill",

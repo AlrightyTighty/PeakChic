@@ -50,6 +50,7 @@ app.post('/api/product_information', async (req, res) => {
       "materials": [ { "material": "material-name", "percentage": 20.00 } ],
       "wash-instructions": "instructions"
       "wash-method": "machine | dry clean | hand",
+      "use-dryer": true,
       "wash-temperature": "cold | hot",
       "imported": true
     }
