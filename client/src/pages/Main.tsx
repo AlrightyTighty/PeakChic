@@ -1,12 +1,12 @@
 import styles from "./Main.module.css"
 import mascot from "../assets/mascot.png"
 import Spinner from "../components/Spinner";
-import React, { useState} from "react";
-// import { useNavigate } from "react-router"
+import { useState} from "react";
+import { useNavigate } from "react-router"
 
 const Main = () => {
     const [loading, setLoading] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
    const onClick = () => { chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         setLoading(true);
@@ -35,7 +35,7 @@ const Main = () => {
                     }
                 )
 
-                console.log(await geminiResponse.json());
+                navigate("/result", { state: {geminiResponse: await geminiResponse.json()}});
             } catch (err) {
                 console.error(err);
             } finally {
@@ -52,7 +52,7 @@ const Main = () => {
         <header>Vesta</header>
         {loading ? (
             <Spinner />
-        ) : (
+        ) : (   
             <button onClick={onClick}>SCAN</button>
         )}
     </main>

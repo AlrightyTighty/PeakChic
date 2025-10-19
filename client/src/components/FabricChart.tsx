@@ -8,7 +8,7 @@ import {
 import { Pie } from 'react-chartjs-2';
 // import { mockFabricData } from './MockFabricData';
 import { fabricInfo } from '../data/FabricInfo';
-import flowerPng from "../assets/Flower.png";
+// import flowerPng from "../assets/Flower.png";
 import type React from 'react';
 
 ChartJS.register(
@@ -47,12 +47,12 @@ const FabricChart: React.FC<FabricChartProps> = ({fabricData}) => {
         ]
     };
 
-    const toList = (v: unknown): string[] =>
+   /* const toList = (v: unknown): string[] =>
         Array.isArray(v)
           ? v.map(s => String(s).trim()).filter(Boolean)
           : typeof v === "string"
             ? v.split(",").map(s => s.trim()).filter(Boolean)
-            : [];
+            : []; */
 
     const options = {
         responsive: true,
