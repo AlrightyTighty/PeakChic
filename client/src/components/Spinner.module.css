@@ -1,6 +1,7 @@
 .loader {
   display: inline-block;
-  margin: auto;
+  margin: 20px auto 0px auto;
+  margin-top: 20px;
   color: #ffffff;
   font-size: 35px;
   text-indent: -9999em;
