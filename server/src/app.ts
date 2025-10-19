@@ -1,70 +1,68 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import durabilityRouter from '../routes/durability';
 
 dotenv.config();
 
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.text({type: "text/html", limit: '100mb'}));
+// Allow text/html (for Diffbot + Gemini parsing)
+app.use(bodyParser.text({ type: 'text/html', limit: '100mb' }));
+
+// Mount durability route
+app.use('/api', durabilityRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
 app.post('/api/product_information', async (req, res) => {
+  try {
     const body = req.body;
     const url = req.query.url as string;
 
-    // console.log(body);
-    // console.log(url);
-
-    const diffbotResponse = await fetch(`https://api.diffbot.com/v3/product?token=${process.env.DIFFBOT_KEY}&url=${encodeURIComponent(url)}`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "text/html",
-            }, 
-            body: body
-        }
-    )
+    const diffbotResponse = await fetch(
+      `https://api.diffbot.com/v3/product?token=${process.env.DIFFBOT_KEY}&url=${encodeURIComponent(url)}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/html' },
+        body: body,
+      }
+    );
 
     const parsedInfo = await diffbotResponse.json();
 
-    const ai = new GoogleGenAI({apiKey: process.env.GEMINI_KEY});
-    const geminiResponse = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: `You will receive a blob of data from a webpage about a product. Please parse the information into the following format:
-        {
-            "product-name": "name",
-            "product-brand": "brand",
-            "product-price": {
-            "amount": 2.00,
-            "currency": "USD"
-            },
-            "materials": [
-            {
-                "material": "material-name",
-                "percentage": 20.00
-            }
-            ],
-            "wash-instructions": "instructions"
-            }
-        
-        make sure your response is a stringified response. Do not respond with anything else. Do not use markdown, just give the plain text. If there are more than 1 product in the data you are sent, only choose the FIRST PRODUCT to parse.
-        If you cannot find information, please do not make it up, just use null.
-        DO NOT USE \`\`\`json \`\`\`!!! This will mess up the parsing.
-        Explain the washing instructions as well as you can without making up information.
-        Here is the data to parse: ${JSON.stringify(parsedInfo)}`,
-    });
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY!);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-    console.log(geminiResponse.text)
+    const prompt = `
+    You will receive a blob of data from a webpage about a product. Please parse the information into this format:
+    {
+      "product-name": "name",
+      "product-brand": "brand",
+      "product-price": { "amount": 2.00, "currency": "USD" },
+      "materials": [ { "material": "material-name", "percentage": 20.00 } ],
+      "wash-instructions": "instructions"
+    }
+    Respond with plain stringified JSON only (no markdown, no code fences).
+    If there are multiple products, only use the first.
+    If data is missing, use null.
+    Explain washing instructions without inventing details.
+    Here is the data to parse: ${JSON.stringify(parsedInfo)}
+    `;
 
-    res.json(JSON.parse(geminiResponse.text)).status(200).send();
-})
+    const geminiResponse = await model.generateContent(prompt);
+    const text = geminiResponse.response.text();
+
+    res.status(200).json(JSON.parse(text));
+  } catch (e: any) {
+    res.status(500).json({ error: String(e.message || e) });
+  }
+});
 
 app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+  console.log(`Express is listening at http://localhost:${port}`);
 });

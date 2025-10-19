@@ -5,13 +5,13 @@
     // Tell ts-node CLI to install the --loader automatically, explained below
     "esm": true,
     "compilerOptions": {
-      "module": "ESNext"
+      "module": "node16"
     }
   },
   "compilerOptions": {
     "target": "ESNext", // Compile to a modern ECMAScript version that supports ES modules
-    "module": "ESNext", // Use ES module syntax for module code generation
-    "moduleResolution": "bundler", // Use Node.js style module resolution
+    "module": "node16", // Use ES module syntax for module code generation
+    "moduleResolution": "node16", // Use Node.js style module resolution
     "esModuleInterop": true, // Enables default imports from modules with no default export
     "outDir": "./dist" // Output directory for compiled files
   },
