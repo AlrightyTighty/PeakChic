@@ -40,7 +40,7 @@ export default function FabricChart() {
 
     const options = {
         responsive: true,
-        mainAspectRatio: false,
+        maintainAspectRatio: false,
         plugins : {
             legend: {
                 display: false,
@@ -63,7 +63,7 @@ export default function FabricChart() {
 
     return (
         <div className={style.chartWrapper}>
-          <Pie data={chartData} options={options} />
+            <Pie data={chartData} options={options} />
         </div>
       );
 }
