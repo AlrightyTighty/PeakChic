@@ -35,12 +35,14 @@ import { useRef } from "react";
       console.log(error)
 
       const appearElement = (p: HTMLParagraphElement) => {
-        p.style.display = "block";
+        // p.style.display = "block";
+        console.log(p);
       }
 
       
       const hideElement = (p: HTMLParagraphElement) => {
-       p.style.display = "none";
+      //  p.style.display = "none";
+        console.log(p);
       }
 
     return (
@@ -58,7 +60,7 @@ import { useRef } from "react";
     </div>
     <div onMouseEnter={ () => appearElement(ecoScoreRef.current!)} onMouseLeave={() => hideElement(ecoScoreRef.current!)} className={s.tile}>
       <div className={s.label}>Eco-Cost</div>
-      <div className={s.value}>{data?.ecoCostScore}</div>
+      <div className={s.value}>{ data?.ecoCostScore }</div>
     </div>
     <div onMouseEnter={ () => appearElement(qualityRef.current!)} onMouseLeave={() => hideElement(qualityRef.current!)}  className={s.tile}>
       <div className={s.label}>Quality</div>
@@ -66,9 +68,7 @@ import { useRef } from "react";
     </div>
   </div>
 
-  <div ref={lifespanRef} className={s.note}>The life prediction is based primarily on the materials and the care instruction. Synthetic materials that are washed warm or hot are more prone to degradation than natural materials that are washed cold.</div>
-  <div ref={ecoScoreRef} className={s.note}>The eco score is based on the material used and whether it was imported. Certain materials, like polyester, are less friendly for the environment. Imported materials require more carbon emissions than locally-sourced materials for transport.</div>
-  <div ref={qualityRef} className={s.note}>Quality is based on material composition and garment construction.</div>
+  <div className={s.note}>{geminiResponse["wash-instructions"]}</div>
 </div>
 
     );
